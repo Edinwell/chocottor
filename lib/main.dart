@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'detail.dart';
+
 void main() {
   runApp(MyApp());
 }
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -20,11 +22,13 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 class MainPage extends StatefulWidget {
   MainPage() : super();
   @override
   _MainPageState createState() => _MainPageState();
 }
+
 class _MainPageState extends State<MainPage> {
   final _tab = <Tab>[
     Tab(text: '冷蔵庫'),
@@ -51,6 +55,7 @@ class _MainPageState extends State<MainPage> {
           TabPage(title: '洗濯'),
         ]),
         floatingActionButton: FloatingActionButton(
+          heroTag: "Detail",
           onPressed: () {
             Navigator.pushNamed(context, '/detail');
           },
@@ -61,6 +66,7 @@ class _MainPageState extends State<MainPage> {
     );
   }
 }
+
 class TabPage extends StatelessWidget {
   final IconData icon;
   final String title;
@@ -82,7 +88,8 @@ class TabPage extends StatelessWidget {
                 child: Text("Button"),
                 onPressed: () {},
                 splashColor: Colors.blue,
-              ),RaisedButton(
+              ),
+              RaisedButton(
                 child: Text("Button"),
                 onPressed: () {},
                 splashColor: Colors.blue,
@@ -95,6 +102,7 @@ class TabPage extends StatelessWidget {
     );
   }
 }
+
 class TabPage2 extends StatelessWidget {
   final IconData icon;
   final String title;
@@ -116,7 +124,8 @@ class TabPage2 extends StatelessWidget {
                 child: Text("Button2"),
                 onPressed: () {},
                 splashColor: Colors.blue,
-              ),RaisedButton(
+              ),
+              RaisedButton(
                 child: Text("Button2"),
                 onPressed: () {},
                 splashColor: Colors.blue,
