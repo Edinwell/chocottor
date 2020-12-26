@@ -73,7 +73,7 @@ class TabPage extends StatelessWidget {
   const TabPage({Key key, this.icon, this.title}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final TextStyle textStyle = Theme.of(context).textTheme.display1;
+    final TextStyle textStyle = Theme.of(context).textTheme.headline4;
     return Container(
       child: Row(
         children: [
@@ -109,7 +109,7 @@ class TabPage2 extends StatelessWidget {
   const TabPage2({Key key, this.icon, this.title}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final TextStyle textStyle = Theme.of(context).textTheme.display1;
+    final TextStyle textStyle = Theme.of(context).textTheme.headline4;
     return Container(
       child: Row(
         children: [

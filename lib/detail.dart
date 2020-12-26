@@ -12,27 +12,28 @@ class Detail extends StatelessWidget {
         children: [
           ItemRow(
             itemName: "品名",
-            func: TextField(),
+            elems: [TextField()],
           ),
           ItemRow(
             itemName: "期限",
-            func: TextField(),
+            elems: [TextField()],
           ),
           ItemRow(
             itemName: "数量",
+            elems: [TextField()],
           ),
           ItemRow(
             itemName: "単位",
+            elems: [TextField()],
           ),
-          ItemRow(
-            itemName: "買うもの",
-            func: Checkbox(
+          ItemRow(itemName: "購入予定", elems: [
+            Checkbox(
               value: isBuy,
               onChanged: (bool value) {
                 isBuy = value;
               },
             ),
-          )
+          ])
         ],
       ),
       floatingActionButton: Row(
@@ -63,8 +64,8 @@ class Detail extends StatelessWidget {
 
 class ItemRow extends StatefulWidget {
   final String itemName;
-  final StatefulWidget func;
-  const ItemRow({Key key, this.itemName, this.func}) : super(key: key);
+  final List<StatefulWidget> elems;
+  const ItemRow({Key key, this.itemName, this.elems}) : super(key: key);
 
   @override
   _ChangeFormState createState() => _ChangeFormState();
@@ -89,11 +90,15 @@ class _ChangeFormState extends State<ItemRow> {
       child: Row(
         children: [
           Container(
-              child: Text(widget.itemName),
-              width: MediaQuery.of(context).size.width * 0.25),
+            width: MediaQuery.of(context).size.width * 0.25,
+            child: Text(widget.itemName),
+          ),
           Container(
-              child: widget.func,
-              width: MediaQuery.of(context).size.width * 0.60)
+            width: MediaQuery.of(context).size.width * 0.50,
+            child: Row(
+              children: widget.elems,
+            ),
+          ),
         ],
       ),
     );
