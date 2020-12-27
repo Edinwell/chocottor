@@ -12,28 +12,29 @@ class Detail extends StatelessWidget {
         children: [
           ItemRow(
             itemName: "品名",
-            elems: [TextField()],
+            elem: TextField(),
           ),
           ItemRow(
             itemName: "期限",
-            elems: [TextField()],
+            elem: TextField(),
           ),
           ItemRow(
             itemName: "数量",
-            elems: [TextField()],
+            elem: TextField(),
           ),
           ItemRow(
             itemName: "単位",
-            elems: [TextField()],
+            elem: TextField(),
           ),
-          ItemRow(itemName: "購入予定", elems: [
-            Checkbox(
+          ItemRow(
+            itemName: "購入予定",
+            elem: Checkbox(
               value: isBuy,
               onChanged: (bool value) {
                 isBuy = value;
               },
             ),
-          ])
+          )
         ],
       ),
       floatingActionButton: Row(
@@ -64,8 +65,8 @@ class Detail extends StatelessWidget {
 
 class ItemRow extends StatefulWidget {
   final String itemName;
-  final List<StatefulWidget> elems;
-  const ItemRow({Key key, this.itemName, this.elems}) : super(key: key);
+  final StatefulWidget elem;
+  const ItemRow({Key key, this.itemName, this.elem}) : super(key: key);
 
   @override
   _ChangeFormState createState() => _ChangeFormState();
@@ -95,9 +96,7 @@ class _ChangeFormState extends State<ItemRow> {
           ),
           Container(
             width: MediaQuery.of(context).size.width * 0.50,
-            child: Row(
-              children: widget.elems,
-            ),
+            child: widget.elem,
           ),
         ],
       ),
