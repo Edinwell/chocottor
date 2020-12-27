@@ -14,6 +14,7 @@ class _DetailWidgetState extends State<DetailWidget> {
   int price = 0;
   bool isBuy = false;
   String notes = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,26 +28,30 @@ class _DetailWidgetState extends State<DetailWidget> {
             elem: TextField(),
           ),
           ItemRow(
-            itemName: "期限",
+            itemName: "数量",
+            elem: TextFormField(keyboardType: TextInputType.number),
+          ),
+          ItemRow(
+            itemName: "値段",
+            elem: TextFormField(keyboardType: TextInputType.number),
+          ),
+          ItemRow(
+            itemName: "賞味期限",
             elem: ExpirationDate(),
           ),
+          // ItemRow(
+          //   itemName: "購入予定",
+          //   elem: Checkbox(
+          //     value: isBuy,
+          //     onChanged: (bool value) {
+          //       isBuy = value;
+          //     },
+          //   ),
+          // ),
           ItemRow(
-            itemName: "数量",
+            itemName: "備考",
             elem: TextField(),
           ),
-          ItemRow(
-            itemName: "単位",
-            elem: TextField(),
-          ),
-          ItemRow(
-            itemName: "購入予定",
-            elem: Checkbox(
-              value: isBuy,
-              onChanged: (bool value) {
-                isBuy = value;
-              },
-            ),
-          )
         ],
       ),
       floatingActionButton: Row(
@@ -107,7 +112,7 @@ class _ChangeFormState extends State<ItemRow> {
             child: Text(widget.itemName),
           ),
           Container(
-            width: MediaQuery.of(context).size.width * 0.50,
+            width: MediaQuery.of(context).size.width * 0.60,
             child: widget.elem,
           ),
         ],
