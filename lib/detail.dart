@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:chocottor/widgets/calender_picker.dart';
 
-class Detail extends StatelessWidget {
+class DetailWidget extends StatefulWidget {
+  DetailWidget() : super();
+  @override
+  _DetailWidgetState createState() => _DetailWidgetState();
+}
+
+class _DetailWidgetState extends State<DetailWidget> {
+  String itemName = "";
+  int count = 0;
+  DateTime expirationDate = DateTime.now();
+  int price = 0;
   bool isBuy = false;
+  String notes = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +28,7 @@ class Detail extends StatelessWidget {
           ),
           ItemRow(
             itemName: "期限",
-            elem: TextField(),
+            elem: ExpirationDate(),
           ),
           ItemRow(
             itemName: "数量",
