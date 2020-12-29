@@ -8,12 +8,12 @@ class DetailWidget extends StatefulWidget {
 }
 
 class _DetailWidgetState extends State<DetailWidget> {
-  String itemName = "";
-  int count = 0;
-  DateTime expirationDate = DateTime.now();
-  int price = 0;
-  bool isBuy = false;
-  String notes = "";
+  String _itemName = "";
+  int _count = 0;
+  DateTime _expirationDate = DateTime.now();
+  int _price = 0;
+  bool _isBuy = false;
+  String _notes = "";
 
   @override
   Widget build(BuildContext context) {
@@ -25,29 +25,64 @@ class _DetailWidgetState extends State<DetailWidget> {
         children: [
           ItemRow(
             itemName: "品名",
-            elem: TextField(),
+            elem: TextFormField(
+              keyboardType: TextInputType.text,
+              onChanged: (String value) {
+                setState(() {
+                  _itemName = value;
+                });
+              },
+            ),
           ),
           ItemRow(
             itemName: "数量",
-            elem: TextFormField(keyboardType: TextInputType.number),
+            elem: TextFormField(
+                keyboardType: TextInputType.number,
+                validator: (String value) {
+                  if (value.length == 0 || value == '0') {
+                    return '不正な値です';
+                  }
+                  return '';
+                },
+                onChanged: (String value) {
+                  setState(() {
+                    _count = int.parse(value);
+                  });
+                }),
           ),
           ItemRow(
             itemName: "値段",
-            elem: TextFormField(keyboardType: TextInputType.number),
+            elem: TextFormField(
+              keyboardType: TextInputType.number,
+              validator: (String value) {
+                if (value.length == 0) {
+                  return '値を入力';
+                }
+                return '';
+              },
+              onChanged: (String value) {
+                setState(() {
+                  _price = int.parse(value);
+                });
+              },
+            ),
           ),
           ItemRow(
             itemName: "賞味期限",
             elem: ExpirationDate(),
           ),
-          // ItemRow(
-          //   itemName: "購入予定",
-          //   elem: Checkbox(
-          //     value: isBuy,
-          //     onChanged: (bool value) {
-          //       isBuy = value;
-          //     },
-          //   ),
-          // ),
+          ItemRow(
+            itemName: "購入予定",
+            elem: Checkbox(
+              activeColor: Colors.blue,
+              value: _isBuy,
+              onChanged: (bool value) {
+                setState(() {
+                  _isBuy = value;
+                });
+              },
+            ),
+          ),
           ItemRow(
             itemName: "備考",
             elem: TextField(),
@@ -76,6 +111,7 @@ class _DetailWidgetState extends State<DetailWidget> {
           ),
         ],
       ),
+      resizeToAvoidBottomPadding: false,
     );
   }
 }
