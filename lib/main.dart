@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'detail.dart';
+
 void main() {
   runApp(MyApp());
 }
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -15,16 +17,18 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: <String, WidgetBuilder>{
         '/home': (BuildContext context) => new MainPage(),
-        '/detail': (BuildContext context) => new Detail()
+        '/detail': (BuildContext context) => new DetailWidget()
       },
     );
   }
 }
+
 class MainPage extends StatefulWidget {
   MainPage() : super();
   @override
   _MainPageState createState() => _MainPageState();
 }
+
 class _MainPageState extends State<MainPage> {
   final _tab = <Tab>[
     Tab(text: '冷蔵庫'),
@@ -51,8 +55,21 @@ class _MainPageState extends State<MainPage> {
           TabPage(title: '洗濯'),
         ]),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/detail');
+          heroTag: "Detail",
+          onPressed: () async {
+            final Map<String, dynamic> newItem =
+                await Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) {
+                // 遷移先の画面としてリスト追加画面を指定
+                return DetailWidget();
+              }),
+            );
+            // TODO: data update & display of added data
+            if (newItem == null) {
+              print("null");
+            } else {
+              print(newItem);
+            }
           },
           tooltip: 'Increment',
           child: Icon(Icons.add),
@@ -61,13 +78,14 @@ class _MainPageState extends State<MainPage> {
     );
   }
 }
+
 class TabPage extends StatelessWidget {
   final IconData icon;
   final String title;
   const TabPage({Key key, this.icon, this.title}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final TextStyle textStyle = Theme.of(context).textTheme.display1;
+    final TextStyle textStyle = Theme.of(context).textTheme.headline4;
     return Container(
       child: Row(
         children: [
@@ -82,7 +100,8 @@ class TabPage extends StatelessWidget {
                 child: Text("Button"),
                 onPressed: () {},
                 splashColor: Colors.blue,
-              ),RaisedButton(
+              ),
+              RaisedButton(
                 child: Text("Button"),
                 onPressed: () {},
                 splashColor: Colors.blue,
@@ -95,13 +114,14 @@ class TabPage extends StatelessWidget {
     );
   }
 }
+
 class TabPage2 extends StatelessWidget {
   final IconData icon;
   final String title;
   const TabPage2({Key key, this.icon, this.title}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final TextStyle textStyle = Theme.of(context).textTheme.display1;
+    final TextStyle textStyle = Theme.of(context).textTheme.headline4;
     return Container(
       child: Row(
         children: [
@@ -116,7 +136,8 @@ class TabPage2 extends StatelessWidget {
                 child: Text("Button2"),
                 onPressed: () {},
                 splashColor: Colors.blue,
-              ),RaisedButton(
+              ),
+              RaisedButton(
                 child: Text("Button2"),
                 onPressed: () {},
                 splashColor: Colors.blue,
