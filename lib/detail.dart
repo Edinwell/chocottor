@@ -96,7 +96,14 @@ class _DetailWidgetState extends State<DetailWidget> {
           ),
           ItemRow(
             itemName: "備考",
-            elem: TextField(),
+            elem: TextFormField(
+              keyboardType: TextInputType.text,
+              onChanged: (String value) {
+                setState(() {
+                  _notes = value;
+                });
+              },
+            ),
           ),
         ],
       ),
