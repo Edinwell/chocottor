@@ -56,8 +56,20 @@ class _MainPageState extends State<MainPage> {
         ]),
         floatingActionButton: FloatingActionButton(
           heroTag: "Detail",
-          onPressed: () {
-            Navigator.pushNamed(context, '/detail');
+          onPressed: () async {
+            final Map<String, dynamic> newItem =
+                await Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) {
+                // 遷移先の画面としてリスト追加画面を指定
+                return DetailWidget();
+              }),
+            );
+            // TODO: data update & display of added data
+            if (newItem == null) {
+              print("null");
+            } else {
+              print(newItem);
+            }
           },
           tooltip: 'Increment',
           child: Icon(Icons.add),

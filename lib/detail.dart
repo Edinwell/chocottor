@@ -15,6 +15,17 @@ class _DetailWidgetState extends State<DetailWidget> {
   bool _isBuy = false;
   String _notes = "";
 
+  Map<String, dynamic> detailToMap() {
+    return {
+      "itemName": _itemName,
+      "count": _count,
+      "expirationDate": _expirationDate,
+      "price": _price,
+      "isBuy": _isBuy,
+      "notes": _notes
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,7 +109,9 @@ class _DetailWidgetState extends State<DetailWidget> {
               Icons.close,
               color: Colors.white,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pop(null);
+            },
           ),
           Padding(padding: EdgeInsets.symmetric(horizontal: 5.0)),
           FloatingActionButton(
@@ -107,7 +120,9 @@ class _DetailWidgetState extends State<DetailWidget> {
               Icons.check,
               color: Colors.white,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pop(detailToMap());
+            },
           ),
         ],
       ),
